@@ -1,3 +1,7 @@
+************
+DesktopUtils
+************
+
 ###################
 General Information
 ###################
@@ -10,3 +14,5 @@ General Information
 
 - Used APIs
     - `Openweathermap <https://openweathermap.org>`_
+
+
