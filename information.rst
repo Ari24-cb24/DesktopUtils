@@ -9,4 +9,4 @@ General Information
     - ``dotenv``: Used for the .env file that saves the TOKENs for the APIs  
 
 - Used APIs
-    - `Openweather<openweather.org>`_
+    - `Openweathermap <https://openweathermap.org>`_
