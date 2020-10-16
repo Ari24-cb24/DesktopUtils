@@ -6,7 +6,7 @@ General Information
 - License: MIT
 - Language: Python 3.7
 - Required python packages:  
-  - ``dotenv``: Used for the .env file that saves the TOKENs for the APIs  
+    - ``dotenv``: Used for the .env file that saves the TOKENs for the APIs  
 
 - Used APIs
-  - `Openweather<openweather.org>`_
+    - `Openweather<openweather.org>`_
