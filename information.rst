@@ -16,3 +16,15 @@ General Information
     - `Openweathermap <https://openweathermap.org>`_
 
 
+#####################
+Implemented functions
+#####################
+
+- Weather
+
+
+#######################
+Add your own extensions
+#######################
+
+Not added yet
