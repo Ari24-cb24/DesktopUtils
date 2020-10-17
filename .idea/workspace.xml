@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2d535a11-8143-42ae-8dc7-085332c68534" name="Default Changelist" comment="" />
+    <list default="true" id="2d535a11-8143-42ae-8dc7-085332c68534" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/DesktopUtils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/DesktopUtils.time" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/DesktopUtils.time" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data.json" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +20,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1ixwpretAxBFFSqBWNRpLV5Wyg1" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -26,11 +36,11 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\bobmy\OneDrive\Desktop\pp\DesktopUtils\img" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\bobmy\OneDrive\Desktop\pp\DesktopUtils" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\bobmy\OneDrive\Desktop\pp\DesktopUtils\img" />
     </key>
   </component>
   <component name="RunManager">
@@ -123,10 +133,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="277" y="74" key="SettingsEditor/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1602862770443" />
-    <state x="465" y="256" key="com.intellij.ide.util.TipDialog" timestamp="1602868076846">
+    <state x="465" y="256" key="com.intellij.ide.util.TipDialog" timestamp="1602959544350">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="465" y="256" key="com.intellij.ide.util.TipDialog/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1602868076846" />
+    <state x="465" y="256" key="com.intellij.ide.util.TipDialog/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1602959544350" />
     <state x="431" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1602871955153">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
