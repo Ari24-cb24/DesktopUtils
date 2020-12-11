@@ -1,184 +1,161 @@
-import os
 import tkinter as tk
-import tkinter.font
-import requests
-import datetime
-import io
-
-from PIL import Image, ImageTk
 from dotenv import load_dotenv
+import os
+import importlib
+from infi.systray import SysTrayIcon
+from win32_adapter import *
+import threading
+import sys
+import time
 load_dotenv()
 
-class Widget:
-    REFRESH = False
-    RESIZE = [False, False]
-    BAR_COLOR = "black"
-    ROOT: tk.Tk
-    windowX = None
-    windowY = None
+class DesktopUtils:
+    VERSION = "1.0"
+    
+    def __init__(self):
+        self.widgets = {}
+        self.running_gui = False
+        self.refresh_thread = threading.Thread(target=self.refresh_widgets)
 
-    def __init__(self, root):
-        self.root = root
+        menu = (
+            ("Open", "./img/icon.ico", self._open_gui),
+            ("Exit", "./img/x.ico", self.__shutdown),
+        )
 
-    def refresh(self):
-        pass
+        self.stray = SysTrayIcon("./img/icon.ico", "DeskopUtils", menu_options=menu)
 
-    def run(self):
-        pass
+    def __shutdown(self, *_):
+        def stop():
+            DestroyWindow(self.stray._hwnd)
 
-    def quit(self):
-        self.root.destroy()
+            for widget in self.widgets:
+                instance = self.widgets[widget]["instance"]
 
-    def __button_release(self, _):
-        self.x = None
-        self.y = None
+                try:
+                    instance.root.destroy()
+                except RuntimeError:
+                    pass
 
-    def __button_press(self, event):
-        self.x = event.x
-        self.y = event.y
+        t = threading.Thread(target=stop)
+        t.start()
 
-    def __move_window(self, event):
-        if not self.windowX or not self.windowY:
+        self.refresh_thread.join()
+        sys.exit(0)
+
+    def _run_stray(self):
+        self.stray.start()
+    
+    def _open_gui(self, _):
+        if self.running_gui:
             return
 
-        deltax = event.x - self.windowX
-        deltay = event.y - self.windowY
-        x = self.root.winfo_x() + deltax
-        y = self.root.winfo_y() + deltay
-        self.root.geometry("+%s+%s" % (x, y))
+        self.running_gui = True
 
-class WeatherWidget:
-    REFRESH = True
+        root = tk.Tk()
+        root.geometry("500x500")
+        root.title("DesktopUtils V" + self.VERSION)
 
-    iconLabel: tk.Label
-    temperature: tk.Label
-    description: tk.Label
-    cloudPercent: tk.Label
+        def close_win():
+            root.destroy()
+            self.running_gui = False
+            self._run_stray()
 
-    def __init__(self, root):
-        self.frame = tk.Frame(root, width=200, height=200)
-        self.api_key = os.environ["WEATHER_API_KEY"]
-        self.BASE_URL = "https://api.openweathermap.org/data/2.5/"
-        self.data = {
-            "city_name": "Offenbach",
-            "appid": self.api_key
-        }
-        self.fmt = "%d.%m.%Y|%H:%M:%S"
+        root.protocol("WM_DELETE_WINDOW", close_win)
 
-    def __make_request(self):
-        r = requests.get(self.BASE_URL + "weather?q={city_name}&appid={appid}&lang=DE&units=metric"
-                         .replace("{city_name}", self.data["city_name"])
-                         .replace("{appid}", self.data["appid"]))
-
-        data = r.json()
-
-        del data["coord"]
-        del data["base"]
-        del data["dt"]
-        del data["visibility"]
-        del data["timezone"]
-        del data["id"]
-        del data["cod"]
-        del data["main"]["temp_min"]
-        del data["main"]["temp_max"]
-        del data["main"]["pressure"]
-        del data["sys"]["type"]
-        del data["sys"]["id"]
-        del data["wind"]["deg"]
-
-        data["sys"]["sunrise"] = datetime.datetime.utcfromtimestamp(data["sys"]["sunrise"]).strftime(self.fmt)
-        data["sys"]["sunset"] = datetime.datetime.utcfromtimestamp(data["sys"]["sunset"]).strftime(self.fmt)
-        data["clouds"]["percent"] = data["clouds"].pop("all")
-        data["weather"] = data["weather"].pop(0)
-        data["weather"]["icon"] = "http://openweathermap.org/img/w/" + data["weather"]["icon"] + ".png"
-        data["sys"]["city"] = data.pop("name")
-
-        del data["weather"]["id"]
-        del data["weather"]["main"]
-
-        return data
-
-    def refresh(self):
-        result = self.__make_request()
-
-        icon = io.BytesIO(requests.get(result["weather"]["icon"]).content)
-        icon = Image.open(icon)
-        icon = ImageTk.PhotoImage(icon)
-        icon = icon._PhotoImage__photo.zoom(2)
-
-        self.iconLabel.configure(image=icon)
-        self.iconLabel.photo = icon
-
-        self.temperature.configure(text=str(round(result["main"]["temp"])) + "°C")
-        self.description.configure(text=result["weather"]["description"], font=tk.font.Font(family="Courier", size=12 if len(result["weather"]["description"]) <= 22 else 10))
-        self.cloudPercent.configure(text="WM: " + str(result["clouds"]["percent"]) + "%")
-
-    def run(self):
-        result = self.__make_request()
-
-        icon = io.BytesIO(requests.get(result["weather"]["icon"]).content)
-        icon = Image.open(icon)
-        icon = ImageTk.PhotoImage(icon)
-        icon = icon._PhotoImage__photo.zoom(2)
-
-        self.iconLabel = tk.Label(self.frame, image=icon)
-        self.iconLabel.photo = icon
-        self.iconLabel.place(x=self.frame.winfo_width()//2+50, y=-10)
-
-        self.temperature = tk.Label(self.frame, font=tk.font.Font(family="comicsansms", size=11), text=str(round(result["main"]["temp"])) + "°C")
-        self.temperature.place(x=150, y=16)
-
-        self.description = tk.Label(self.frame, font=tk.font.Font(family="Courier", size=12 if len(result["weather"]["description"]) <= 22 else 10), text=result["weather"]["description"])
-        self.description.place(anchor="center", x=self.frame.winfo_width()//2+100, y=75)
-
-        self.cloudPercent = tk.Label(self.frame, font=tk.font.Font(family="comicsansms", size=9), text="WM: " + str(result["clouds"]["percent"]) + "%")
-        self.cloudPercent.place(x=1, y=10)
-
-        self.frame.pack()
-
-class DesktopUtils:
-    def __init__(self):
-        self.widgets = []
-
+        root.mainloop()
+    
     def create_root(self, widget) -> tk.Tk:
         root = tk.Tk()
         root.overrideredirect(True)
-        root.wm_resizable(widget.RESIZE)
+        root.wm_resizable(*widget.RESIZE)
+        root.geometry(f"{widget.SIZE[0]}x{widget.SIZE[1]}+{widget.START_POS[0]}+{widget.START_POS[1]}")
 
-        top_bar = tk.Frame(root, bg=widget.BAR_COLOR, height=25, width=200)
+        return root
+
+    def add_widget(self, info, widget):
+        generalInfo = info.copy()
+        generalInfo.pop("NAME")
+
+        self.widgets[info["NAME"]] = {
+            "information": generalInfo,
+            "plugin": widget
+        }
+
+    def refresh_widgets(self):
+        time.sleep(10)
+
+        while True:
+            for widget in self.widgets:
+                if self.widgets[widget]["instance"].REFRESH:
+                    self.widgets[widget]["instance"].refresh()
+
+            time.sleep(20)
+
+    def _create_bar(self, root, w_):
+        top_bar = tk.Frame(root, bg=w_.BAR_COLOR, height=25, width=200)
 
         xImage = tk.PhotoImage(file="./img/x.png")
-        x = tk.Button(top_bar, image=xImage, borderwidth=0, highlightthickness=0, command=widget.quit)
+        x = tk.Button(top_bar, image=xImage, borderwidth=0, highlightthickness=0, command=w_.quit)
         x.photo = xImage
 
         x.place(x=180, y=2)
 
-        top_bar.bind("<ButtonRelease-1>", widget.__button_release)
-        top_bar.bind("<ButtonPress-1>", widget.__button_press)
-        top_bar.bind("<B1-Motion>", widget.__move_window)
+        top_bar.bind("<ButtonRelease-1>", getattr(w_, "_Widget__button_release"))
+        top_bar.bind("<ButtonPress-1>", getattr(w_, "_Widget__button_press"))
+        top_bar.bind("<B1-Motion>", getattr(w_, "_Widget__move_window"))
         top_bar.pack(side=tk.TOP, anchor=tk.E)
 
-        return root
-
-    def add_widget(self, widget):
-        self.widgets.append(widget)
-
-    def refresh_widgets(self):
-        for widget in self.widgets:
-            if widget.REFRESH:
-                widget.refresh()
-
-        self.root.after(60*1000, self.refresh_widgets)
+        return top_bar
 
     def run(self):
-        self.add_widget(WeatherWidget(self.root))
+        pluginPaths = next(os.walk("./plugins/"))[1]
+        for folderName in pluginPaths:
+            path = "./plugins/" + folderName
+
+            try:
+                with open(path + "/info.meda", "r") as fh:
+                    infoMeDa = fh.readlines()
+            except FileNotFoundError:
+                print("Could not load " + folderName + ". info.meda is missing!")
+                continue
+
+            pluginInfo = {
+                "NAME": None,
+                "AUTHOR": None,
+                "DESCRIPTION": None,
+                "VERSION": None,
+                "MAIN": None,
+                "CLASS": None
+            }
+
+            for line in infoMeDa:
+                key, value = line.split("=")
+
+                if key in pluginInfo:
+                    pluginInfo[key] = value.replace("\n", "").replace(" ", "_")
+
+            assert pluginInfo["MAIN"] is not None
+
+            path = path[2:].replace("/", ".")
+            main_filename = pluginInfo["MAIN"].replace(".py", "")
+            main_ = importlib.import_module(".." + main_filename, path)
+
+            class_ = getattr(main_, pluginInfo["CLASS"])
+
+            self.add_widget(pluginInfo, class_)
+
+        self._run_stray()
+
+        self.refresh_thread.start()
 
         for widget in self.widgets:
-            widget.run()
+            root = self.create_root(self.widgets[widget]["plugin"])
+            w = self.widgets[widget]["plugin"](root)
+            self.widgets[widget]["instance"] = w
 
-        self.root.after(5000, self.refresh_widgets)
+            self._create_bar(root, w)
 
-        self.root.mainloop()
+            w.run()
 
 
 if __name__ == '__main__':

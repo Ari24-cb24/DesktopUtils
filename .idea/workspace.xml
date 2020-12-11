@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2d535a11-8143-42ae-8dc7-085332c68534" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/DesktopUtils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+    <list default="true" id="2d535a11-8143-42ae-8dc7-085332c68534" name="Default Changelist" comment="Added newer Version of DesktopUtils.py">
+      <change afterPath="$PROJECT_DIR$/Widget.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/icon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/x.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/WeatherWidget/WeatherWidget.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/WeatherWidget/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/WeatherWidget/info.meda" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/win32_adapter.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/DesktopUtils.time" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/DesktopUtils.time" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DesktopUtils.py" beforeDir="false" afterPath="$PROJECT_DIR$/DesktopUtils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/INFORMATION.rst" beforeDir="false" afterPath="$PROJECT_DIR$/INFORMATION.rst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,25 +29,30 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="ProjectId" id="1ixwpretAxBFFSqBWNRpLV5Wyg1" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\bobmy\OneDrive\Desktop\pp\DesktopUtils\plugins\WeatherWidget" />
+      <recent name="C:\Users\bobmy\OneDrive\Desktop\pp\DesktopUtils\img" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\bobmy\OneDrive\Desktop\pp\DesktopUtils" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\bobmy\OneDrive\Desktop\pp\DesktopUtils\img" />
     </key>
   </component>
   <component name="RunManager">
@@ -94,52 +106,77 @@
       <option name="presentableId" value="Default" />
       <updated>1602862737137</updated>
     </task>
+    <task id="LOCAL-00001" summary="Added newer Version of DesktopUtils.py">
+      <created>1602960250844</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1602960250844</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Added newer Version of DesktopUtils.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added newer Version of DesktopUtils.py" />
+  </component>
   <component name="WindowStateProjectService">
-    <state width="1515" height="276" key="GridCell.Tab.0.bottom" timestamp="1602873910107">
+    <state x="382" y="239" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602961165316">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="276" key="GridCell.Tab.0.bottom/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1602873910107" />
-    <state width="1515" height="276" key="GridCell.Tab.0.center" timestamp="1602873910107">
+    <state x="382" y="239" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1602961165316" />
+    <state x="280" y="29" key="CommitChangelistDialog2" timestamp="1602960314440">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="276" key="GridCell.Tab.0.center/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1602873910107" />
-    <state width="1515" height="276" key="GridCell.Tab.0.left" timestamp="1602873910107">
+    <state x="280" y="29" key="CommitChangelistDialog2/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1602960314440" />
+    <state width="1297" height="266" key="GridCell.Tab.0.bottom" timestamp="1607698751694">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="276" key="GridCell.Tab.0.left/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1602873910107" />
-    <state width="1515" height="276" key="GridCell.Tab.0.right" timestamp="1602873910107">
+    <state width="1297" height="266" key="GridCell.Tab.0.bottom/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1607698751694" />
+    <state width="1297" height="266" key="GridCell.Tab.0.center" timestamp="1607698751694">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="276" key="GridCell.Tab.0.right/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1602873910107" />
-    <state width="1515" height="276" key="GridCell.Tab.1.bottom" timestamp="1602873910107">
+    <state width="1297" height="266" key="GridCell.Tab.0.center/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1607698751694" />
+    <state width="1297" height="266" key="GridCell.Tab.0.left" timestamp="1607698751694">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="276" key="GridCell.Tab.1.bottom/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1602873910107" />
-    <state width="1515" height="276" key="GridCell.Tab.1.center" timestamp="1602873910107">
+    <state width="1297" height="266" key="GridCell.Tab.0.left/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1607698751694" />
+    <state width="1297" height="266" key="GridCell.Tab.0.right" timestamp="1607698751694">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="276" key="GridCell.Tab.1.center/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1602873910107" />
-    <state width="1515" height="276" key="GridCell.Tab.1.left" timestamp="1602873910107">
+    <state width="1297" height="266" key="GridCell.Tab.0.right/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1607698751694" />
+    <state width="1212" height="273" key="GridCell.Tab.1.bottom" timestamp="1603117474867">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="276" key="GridCell.Tab.1.left/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1602873910107" />
-    <state width="1515" height="276" key="GridCell.Tab.1.right" timestamp="1602873910107">
+    <state width="1212" height="273" key="GridCell.Tab.1.bottom/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1603117474867" />
+    <state width="1212" height="273" key="GridCell.Tab.1.center" timestamp="1603117474866">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1515" height="276" key="GridCell.Tab.1.right/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1602873910107" />
+    <state width="1212" height="273" key="GridCell.Tab.1.center/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1603117474866" />
+    <state width="1212" height="273" key="GridCell.Tab.1.left" timestamp="1603117474866">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1212" height="273" key="GridCell.Tab.1.left/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1603117474866" />
+    <state width="1212" height="273" key="GridCell.Tab.1.right" timestamp="1603117474867">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1212" height="273" key="GridCell.Tab.1.right/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1603117474867" />
     <state x="277" y="74" key="SettingsEditor" timestamp="1602862770443">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="277" y="74" key="SettingsEditor/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1602862770443" />
-    <state x="465" y="256" key="com.intellij.ide.util.TipDialog" timestamp="1602959544350">
+    <state x="465" y="256" key="com.intellij.ide.util.TipDialog" timestamp="1607699186344">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="465" y="256" key="com.intellij.ide.util.TipDialog/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1602959544350" />
-    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1602871955153">
+    <state x="465" y="256" key="com.intellij.ide.util.TipDialog/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1607699186344" />
+    <state x="434" y="353" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602960264630">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1602871955153" />
+    <state x="434" y="353" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1602960264630" />
+    <state x="734" y="84" width="672" height="678" key="search.everywhere.popup" timestamp="1604071272212">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="734" y="84" width="672" height="678" key="search.everywhere.popup/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1604071272212" />
   </component>
 </project>
